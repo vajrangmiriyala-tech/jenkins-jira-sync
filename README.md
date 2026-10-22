@@ -6,6 +6,12 @@ When a Jenkins build finishes, this tool finds the matching Jira ticket and post
 
 This is my Sem 1 OJT open source project (G391, Jenkins Jira Integration).
 
+## Requirements
+
+- Python 3.10 or newer
+- A Jenkins server you can reach (for build info)
+- A Jira site with an API token (for posting comments)
+
 ## How it works
 
 - Reads build info from Jenkins using the Jenkins REST API
