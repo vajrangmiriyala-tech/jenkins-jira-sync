@@ -29,3 +29,5 @@ This is my Sem 1 OJT open source project (G391, Jenkins Jira Integration).
 ## Status
 
 Week 1. Setting things up: learning the Jenkins and Jira APIs, writing the plan, making test data.
+
+Note: comments posted to Jira are idempotent - re-running the tool for the same build will not post a duplicate comment.
