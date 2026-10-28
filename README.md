@@ -26,6 +26,10 @@ This is my Sem 1 OJT open source project (G391, Jenkins Jira Integration).
 - Never prints passwords or tokens in logs
 - Only updates tickets it is allowed to, never changes ticket status
 
+## Audit report
+
+Each run writes one report entry per build. It lists the build number, the ticket key it mapped to, what happened (Updated, Skipped, or Error), and the time it ran.
+
 ## Status
 
 Week 1. Setting things up: learning the Jenkins and Jira APIs, writing the plan, making test data.
