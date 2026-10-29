@@ -35,3 +35,11 @@ Each run writes one report entry per build. It lists the build number, the ticke
 Week 1. Setting things up: learning the Jenkins and Jira APIs, writing the plan, making test data.
 
 Note: comments posted to Jira are idempotent - re-running the tool for the same build will not post a duplicate comment.
+
+## Usage
+
+Run it from the command line with the job name and build number:
+
+sync-jira --job my-app --build 142
+
+The Jenkins and Jira addresses and logins come from environment variables: JENKINS_URL, JENKINS_USER, JENKINS_TOKEN, JIRA_URL, JIRA_EMAIL and JIRA_TOKEN. If any of them is missing, the tool stops with a clear error before it talks to either server.
