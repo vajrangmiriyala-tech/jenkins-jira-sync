@@ -43,3 +43,7 @@ Run it from the command line with the job name and build number:
 sync-jira --job my-app --build 142
 
 The Jenkins and Jira addresses and logins come from environment variables: JENKINS_URL, JENKINS_USER, JENKINS_TOKEN, JIRA_URL, JIRA_EMAIL and JIRA_TOKEN. If any of them is missing, the tool stops with a clear error before it talks to either server.
+
+## Mapping table
+
+If the commit message has no ticket key, the tool uses a small JSON mapping table instead. It lists which ticket each build maps to. If the key is missing or unclear, the build is skipped and nothing in Jira is changed.
