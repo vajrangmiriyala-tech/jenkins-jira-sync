@@ -32,11 +32,13 @@ Each run writes one report entry per build. It lists the build number, the ticke
 
 ## Status
 
-Week 1. Setting things up: learning the Jenkins and Jira APIs, writing the plan, making test data.
+Month 1. Architecture and plan are done. README and docs are done. Code implementation is the next step.
 
 Note: comments posted to Jira are idempotent - re-running the tool for the same build will not post a duplicate comment.
 
 ## Usage
+
+Note: the code for this command is not in the repo yet. This is the planned command for the next step.
 
 Run it from the command line with the job name and build number:
 
