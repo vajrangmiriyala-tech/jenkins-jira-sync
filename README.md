@@ -49,3 +49,7 @@ The Jenkins and Jira addresses and logins come from environment variables: JENKI
 ## Mapping table
 
 If the commit message has no ticket key, the tool uses a small JSON mapping table instead. It lists which ticket each build maps to. If the key is missing or unclear, the build is skipped and nothing in Jira is changed.
+
+## Run summary
+
+Every run prints a short summary at the end: how many builds were processed, how many were skipped, and how many failed. It exits with a code that shows success or failure, so a scheduled job can tell if the run worked.
