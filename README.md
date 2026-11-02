@@ -32,7 +32,7 @@ Each run writes one report entry per build. It lists the build number, the ticke
 
 ## Status
 
-Month 1. Architecture and plan are done. README and docs are done. Code implementation is the next step.
+Month 1. Architecture and plan are done. README and docs are done. Signed PRD submitted on 2 Nov. Code implementation is the next step.
 
 Note: comments posted to Jira are idempotent - re-running the tool for the same build will not post a duplicate comment.
 
