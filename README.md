@@ -57,3 +57,7 @@ Every run prints a short summary at the end: how many builds were processed, how
 ## Error handling
 
 Network errors, bad logins, missing builds, and bad data must not crash the tool without a clear message. Every failure is recorded as ERROR in the audit report, with a useful reason.
+
+## Scheduled runs
+
+The tool keeps a small local state file with the last processed build, so a scheduled run can continue from where the last run stopped. No database is needed.
