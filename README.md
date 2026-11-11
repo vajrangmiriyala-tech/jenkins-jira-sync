@@ -69,3 +69,7 @@ Tests use pytest with requests-mock, so no real Jenkins or Jira server is needed
 ## Scheduled runs
 
 The tool keeps a small local state file with the last processed build, so a scheduled run can continue from where the last run stopped. No database is needed.
+
+## Logging
+
+The tool writes a short log line for each build it processes, so a run can be checked afterwards. Logs never include passwords or tokens. A failed build is logged with the reason, so the problem can be found fast.
