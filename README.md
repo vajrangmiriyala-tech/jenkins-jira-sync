@@ -62,6 +62,10 @@ Every run prints a short summary at the end: how many builds were processed, how
 
 Network errors, bad logins, missing builds, and bad data must not crash the tool without a clear message. Every failure is recorded as ERROR in the audit report, with a useful reason.
 
+## Testing
+
+Tests use pytest with requests-mock, so no real Jenkins or Jira server is needed to run them. Coverage is tracked with coverage.py, and the target is 85 percent or more before the demo. Every pull request runs the tests in GitHub Actions.
+
 ## Scheduled runs
 
 The tool keeps a small local state file with the last processed build, so a scheduled run can continue from where the last run stopped. No database is needed.
