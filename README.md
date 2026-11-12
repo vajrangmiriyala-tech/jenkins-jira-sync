@@ -32,13 +32,13 @@ Each run writes one report entry per build. It lists the build number, the ticke
 
 ## Status
 
-Month 1. Architecture and plan are done. README and docs are done. Signed PRD submitted on 2 Nov. Code implementation is the next step.
+Month 1 is done. Architecture, PRD, and the milestone video are approved. Code started on 12 Nov: ticket_key.py and jenkins_client.py are in, with 11 tests passing. The full tool is still to come.
 
 Note: comments posted to Jira are idempotent - re-running the tool for the same build will not post a duplicate comment.
 
 ## Usage
 
-Note: the code for this command is not in the repo yet. This is the planned command for the next step.
+Note: the full sync-jira command is not in the repo yet. The first two parts are in: ticket_key.py and jenkins_client.py, with tests. This command is the planned next step.
 
 Run it from the command line with the job name and build number:
 
@@ -64,7 +64,7 @@ Network errors, bad logins, missing builds, and bad data must not crash the tool
 
 ## Testing
 
-Tests use pytest with requests-mock, so no real Jenkins or Jira server is needed to run them. Coverage is tracked with coverage.py, and the target is 85 percent or more before the demo. Every pull request runs the tests in GitHub Actions.
+Tests are in the repo now: 11 tests, all passing. They use fake data, so no real Jenkins or Jira server is needed to run them. Run them with python -m pytest. Coverage is tracked with coverage.py, and the target is 85 percent or more before the demo. GitHub Actions is not set up yet.
 
 ## Scheduled runs
 
