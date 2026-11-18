@@ -73,3 +73,7 @@ The tool keeps a small local state file with the last processed build, so a sche
 ## Logging
 
 The tool writes a short log line for each build it processes, so a run can be checked afterwards. Logs never include passwords or tokens. A failed build is logged with the reason, so the problem can be found fast.
+
+## Setup
+
+Clone the repo, then make sure Python 3.10 or newer is installed. Install the only extra package with pip install requests. Set the Jenkins and Jira details as environment variables before the first run.
