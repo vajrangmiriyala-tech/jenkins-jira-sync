@@ -89,3 +89,7 @@ A comment posted on a ticket looks like this:
 Build my-app #142: PASSED. Link: https://jenkins.example.com/job/my-app/142. Time: 2026-11-20 12:00 IST.
 
 That is the full comment. Job name, build number, result, link, and time, nothing else.
+
+## Running the tests
+
+Run python3 -m pytest from the repo folder. It runs 11 tests: 6 for the ticket finder and 5 for the Jenkins reader. All 11 pass in under a second. Coverage is checked with coverage.py, target 85 percent or more.
