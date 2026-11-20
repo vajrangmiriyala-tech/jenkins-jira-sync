@@ -97,3 +97,7 @@ Run python3 -m pytest from the repo folder. It runs 11 tests: 6 for the ticket f
 ## Limits
 
 The tool only posts comments. It never changes a ticket status, never deletes a comment, and never changes Jira admin settings. Those limits are fixed.
+
+## Project structure
+
+ticket_key.py finds the ticket key in a commit message. jenkins_client.py reads one build from Jenkins. test_ticket_key.py and test_jenkins_client.py test them. That is all the code so far.
