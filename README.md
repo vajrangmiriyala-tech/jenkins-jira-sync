@@ -81,3 +81,11 @@ Clone the repo, then make sure Python 3.10 or newer is installed. Install the on
 ## Configuration
 
 The tool reads its settings from environment variables. JENKINS_URL is the address of the Jenkins server, and JENKINS_USER with JENKINS_TOKEN is the login for it. JIRA_URL is the address of the Jira site, and JIRA_EMAIL with JIRA_TOKEN is the login for it. If any of them is missing, the tool stops with a clear error before it talks to either server.
+
+## Example comment
+
+A comment posted on a ticket looks like this:
+
+Build my-app #142: PASSED. Link: https://jenkins.example.com/job/my-app/142. Time: 2026-11-20 12:00 IST.
+
+That is the full comment. Job name, build number, result, link, and time, nothing else.
