@@ -93,3 +93,7 @@ That is the full comment. Job name, build number, result, link, and time, nothin
 ## Running the tests
 
 Run python3 -m pytest from the repo folder. It runs 11 tests: 6 for the ticket finder and 5 for the Jenkins reader. All 11 pass in under a second. Coverage is checked with coverage.py, target 85 percent or more.
+
+## Limits
+
+The tool only posts comments. It never changes a ticket status, never deletes a comment, and never changes Jira admin settings. Those limits are fixed.
