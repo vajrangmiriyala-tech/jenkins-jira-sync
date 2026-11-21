@@ -107,3 +107,7 @@ ticket_key.py finds the ticket key in a commit message. jenkins_client.py reads 
 Wrong login: the tool stops with an error. Check the env vars in Configuration and make sure the tokens are right.
 Build not found: the tool stops with an error. Check the job name and the build number.
 No ticket key found: the tool skips the build. Check the commit message for a key like PROJ-1234, or add the job to the mapping table.
+
+## Next steps
+
+The work left, in order: the Jira client, the no-duplicates check, the audit report, hiding passwords in logs, the full sync-jira command, tests to 85 percent, GitHub Actions, and a mock demo.
