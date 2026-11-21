@@ -92,7 +92,7 @@ That is the full comment. Job name, build number, result, link, and time, nothin
 
 ## Running the tests
 
-Run python3 -m pytest from the repo folder. It runs 11 tests: 6 for the ticket finder and 5 for the Jenkins reader. All 11 pass in under a second. Coverage is checked with coverage.py, target 85 percent or more.
+Run python3 -m pytest from the repo folder. It runs 24 tests: 6 for the ticket finder, 5 for the Jenkins reader, 5 for the config checker, and 8 for the mapping table. All 24 pass in under a second. Coverage is checked with coverage.py, target 85 percent or more.
 
 ## Limits
 
@@ -100,7 +100,7 @@ The tool only posts comments. It never changes a ticket status, never deletes a 
 
 ## Project structure
 
-ticket_key.py finds the ticket key in a commit message. jenkins_client.py reads one build from Jenkins. test_ticket_key.py and test_jenkins_client.py test them. That is all the code so far.
+ticket_key.py finds the ticket key in a commit message. jenkins_client.py reads one build from Jenkins. config.py checks the settings. mapping.py reads the mapping table in mapping.json. test_ticket_key.py, test_jenkins_client.py, test_config.py, and test_mapping.py test them. testfile.py runs the whole flow step by step.
 
 ## Troubleshooting
 
