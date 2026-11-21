@@ -1,6 +1,9 @@
 from config import load_config
+from mapping import load_mapping, resolve_ticket_key
 from ticket_key import extract_ticket_key
 from jenkins_client import normalize_build
+
+FAKE_MAPPING = {"my-app": "PROJ-1234"}
 
 FAKE_SETTINGS = {
     "JENKINS_URL": "https://jenkins.example.com",
@@ -51,7 +54,17 @@ def main():
     print("Commit message:", build["commit_message"])
     print()
 
-    print("Step 4: what happens next")
+    print("Step 4: the backup way to find a ticket")
+    mapping = load_mapping("mapping.json")
+    print("Mapping table:", mapping)
+    message_no_key = "fix login bug"
+    key = resolve_ticket_key(message_no_key, "my-app", mapping)
+    print("Commit message:", message_no_key)
+    print("No key in the message, so the table was used.")
+    print("Ticket key:", key)
+    print()
+
+    print("Step 5: what happens next")
     print("The Jira client is not built yet.")
     print("Next step: post the result as a comment on ticket", key)
     print()
