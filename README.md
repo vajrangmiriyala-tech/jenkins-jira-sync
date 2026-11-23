@@ -129,3 +129,7 @@ The work left, in order: the Jira client, the no-duplicates check, the audit rep
 ## Audit report fields
 
 Each audit report has the job name, the build number, the result, the ticket key, the time, and whether the comment was posted or skipped. One report per build, nothing more.
+
+## Idempotency
+
+The tool never posts the same comment twice for one build. Before it posts, it checks the ticket for a comment about that build. If the comment is already there, it skips the post and says so in the report.
