@@ -125,3 +125,7 @@ No ticket key found: the tool skips the build. Check the commit message for a ke
 ## Next steps
 
 The work left, in order: the Jira client, the no-duplicates check, the audit report, hiding passwords in logs, the full sync-jira command, tests to 85 percent, GitHub Actions, and a mock demo.
+
+## Audit report fields
+
+Each audit report has the job name, the build number, the result, the ticket key, the time, and whether the comment was posted or skipped. One report per build, nothing more.
