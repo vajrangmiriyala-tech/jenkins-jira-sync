@@ -20,6 +20,12 @@ This is my Sem 1 OJT open source project (G391, Jenkins Jira Integration).
 - Skips the build if no ticket is found, or if the comment is already there
 - Writes a report of everything it did
 
+## Ticket key format
+
+A ticket key starts with a capital letter, then capital letters or numbers, then a dash, then numbers, like PROJ-1234. The tool looks for it in the commit message.
+
+The message must have one key only. If it has no key, or two different keys, the tool finds no key and the build is skipped. It never guesses.
+
 ## Rules
 
 - Never posts the same comment twice
