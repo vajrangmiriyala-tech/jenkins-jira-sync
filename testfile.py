@@ -1,4 +1,5 @@
 from config import load_config
+from jira_client import build_comment_body, post_comment
 from mapping import load_mapping, resolve_ticket_key
 from ticket_key import extract_ticket_key
 from jenkins_client import normalize_build
@@ -64,9 +65,40 @@ def main():
     print("Ticket key:", key)
     print()
 
-    print("Step 5: what happens next")
-    print("The Jira client is not built yet.")
-    print("Next step: post the result as a comment on ticket", key)
+    print("Step 5: the Jira client, posting the comment")
+    comment = build_comment_body(build)
+    print("Comment text:")
+    print(comment)
+    print()
+
+    class FakeHttp:
+        def post(self, url, auth=None, json=None, timeout=None):
+            print("Would post to:", url)
+            print("As user:", auth[0])
+
+            class FakeResponse:
+                status_code = 201
+
+                def json(self):
+                    return {"id": "10001"}
+
+            return FakeResponse()
+
+    comment_id = post_comment(
+        "https://jira.example.com",
+        "vajrang@example.com",
+        "jira-token",
+        key,
+        comment,
+        http=FakeHttp(),
+    )
+    print("Fake comment id:", comment_id)
+    print("No live Jira was used. This was a fake post only.")
+    print()
+
+    print("Step 6: what happens next")
+    print("The no-duplicates check is not built yet.")
+    print("Next step: never post the same comment twice for one build.")
     print()
     print("Done. Everything above worked.")
 
