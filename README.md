@@ -10,6 +10,8 @@ When a Jenkins build finishes, this tool finds the matching Jira ticket and post
 
 My Sem 1 OJT open source project. Group G391, Polaris School of Technology, Bangalore. Mentor: Shivam Nandu Ubhale.
 
+> **Figma design of this README:** [jenkins-jira-sync README](https://www.figma.com/design/9kLw3IhKfV0pQK8SgH1uNS/jenkins-jira-sync-README?node-id=2-2)
+
 ## How it works
 
 1. Reads one build from Jenkins through the Jenkins REST API.
