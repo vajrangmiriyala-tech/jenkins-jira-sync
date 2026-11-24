@@ -1,4 +1,7 @@
+from audit import build_report, report_text
 from config import load_config
+from redact import log_safe, redact_config
+from idempotency import already_posted, mark_posted
 from jira_client import build_comment_body, post_comment
 from mapping import load_mapping, resolve_ticket_key
 from ticket_key import extract_ticket_key
@@ -96,9 +99,32 @@ def main():
     print("No live Jira was used. This was a fake post only.")
     print()
 
-    print("Step 6: what happens next")
-    print("The no-duplicates check is not built yet.")
-    print("Next step: never post the same comment twice for one build.")
+    print("Step 6: the no-duplicates check")
+    seen = []
+    print("First run, already posted?", already_posted(key, 142, "SUCCESS", seen))
+    seen = mark_posted(key, 142, "SUCCESS", seen)
+    print("Posted once, remembered.")
+    print("Second run, already posted?", already_posted(key, 142, "SUCCESS", seen))
+    print("Second run posts nothing new.")
+    print()
+
+    print("Step 7: the audit report")
+    report = build_report(build, key, "posted", "10001")
+    print(report_text(report))
+    print()
+
+    print("Step 8: password hiding in logs")
+    config, missing = load_config(FAKE_SETTINGS)
+    safe = redact_config(config)
+    print("Settings as they appear in logs:", safe)
+    line = "calling https://jira.example.com with jira-token"
+    print("Log line before hiding:", line)
+    print("Log line after hiding:", log_safe(line, config))
+    print()
+
+    print("Step 9: what happens next")
+    print("The full sync-jira command is not built yet.")
+    print("Next step: one command that runs all the parts together.")
     print()
     print("Done. Everything above worked.")
 
