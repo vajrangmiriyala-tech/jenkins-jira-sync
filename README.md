@@ -38,17 +38,15 @@ Each run writes one report entry per build. It lists the build number, the ticke
 
 ## Status
 
-Month 1 is done. Architecture, PRD, and the milestone video are approved. Code started on 12 Nov: ticket_key.py and jenkins_client.py are in, with 11 tests passing. The full tool is still to come.
+Month 1 is done. Architecture, PRD, and the milestone video are approved. The full tool is done: ticket finder, Jenkins reader, config checker, mapping table, Jira client, no-duplicates check, audit report, password hiding, and the full sync-jira command are all in, with 55 tests passing.
 
 Note: comments posted to Jira are idempotent - re-running the tool for the same build will not post a duplicate comment.
 
 ## Usage
 
-Note: the full sync-jira command is not in the repo yet. The first two parts are in: ticket_key.py and jenkins_client.py, with tests. This command is the planned next step.
-
 Run it from the command line with the job name and build number:
 
-sync-jira --job my-app --build 142
+python3 sync_jira.py --job my-app --build 142
 
 The Jenkins and Jira addresses and logins come from environment variables: JENKINS_URL, JENKINS_USER, JENKINS_TOKEN, JIRA_URL, JIRA_EMAIL and JIRA_TOKEN. If any of them is missing, the tool stops with a clear error before it talks to either server.
 
@@ -78,7 +76,7 @@ Network errors, bad logins, missing builds, and bad data must not crash the tool
 
 ## Testing
 
-Tests are in the repo now: 11 tests, all passing. They use fake data, so no real Jenkins or Jira server is needed to run them. Run them with python -m pytest. Coverage is tracked with coverage.py, and the target is 85 percent or more before the demo. GitHub Actions is not set up yet.
+Tests are in the repo now: 55 tests, all passing. They use fake data, so no real Jenkins or Jira server is needed to run them. Run them with python3 -m pytest. Coverage is tracked with coverage.py, and GitHub Actions runs the tests on every push to main and fails the run if coverage is under 85 percent.
 
 ## Scheduled runs
 
@@ -106,7 +104,7 @@ That is the full comment. Job name, build number, result, link, and time, nothin
 
 ## Running the tests
 
-Run python3 -m pytest from the repo folder. It runs 24 tests: 6 for the ticket finder, 5 for the Jenkins reader, 5 for the config checker, and 8 for the mapping table. All 24 pass in under a second. Coverage is checked with coverage.py, target 85 percent or more.
+Run python3 -m pytest from the repo folder. It runs 55 tests: 6 for the ticket finder, 5 for the Jenkins reader, 5 for the config checker, 8 for the mapping table, 4 for the Jira client, 8 for the no-duplicates check, 5 for the audit report, 7 for password hiding, and 7 for the full sync command. All 55 pass in under a second. Coverage is checked with coverage.py, target 85 percent or more, and GitHub Actions checks it on every push.
 
 ## Limits
 
@@ -114,7 +112,7 @@ The tool only posts comments. It never changes a ticket status, never deletes a 
 
 ## Project structure
 
-ticket_key.py finds the ticket key in a commit message. jenkins_client.py reads one build from Jenkins. config.py checks the settings. mapping.py reads the mapping table in mapping.json. test_ticket_key.py, test_jenkins_client.py, test_config.py, and test_mapping.py test them. testfile.py runs the whole flow step by step.
+ticket_key.py finds the ticket key in a commit message. jenkins_client.py reads one build from Jenkins. config.py checks the settings. mapping.py reads the mapping table in mapping.json. jira_client.py posts the comment on Jira. idempotency.py stops the same comment twice. audit.py writes one report per build. redact.py hides tokens in logs. sync_jira.py is the full command that runs all the parts together. mock_demo.py runs one passing build, one failing build, and a repeat that posts nothing new, all on fake data. test_ticket_key.py, test_jenkins_client.py, test_config.py, test_mapping.py, test_jira_client.py, test_idempotency.py, test_audit.py, test_redact.py, and test_sync_jira.py test them. testfile.py runs the whole flow step by step.
 
 ## Troubleshooting
 
@@ -124,7 +122,7 @@ No ticket key found: the tool skips the build. Check the commit message for a ke
 
 ## Next steps
 
-The work left, in order: the Jira client, the no-duplicates check, the audit report, hiding passwords in logs, the full sync-jira command, tests to 85 percent, GitHub Actions, and a mock demo.
+The tool is complete. The demo video is due 25 November 2026.
 
 ## Audit report fields
 

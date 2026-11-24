@@ -1,9 +1,9 @@
 import requests
 
 
-def get_build(base_url, job, build_number, user, token):
+def get_build(base_url, job, build_number, user, token, http=requests):
     url = base_url.rstrip("/") + "/job/" + job + "/" + str(build_number) + "/api/json"
-    response = requests.get(url, auth=(user, token), timeout=10)
+    response = http.get(url, auth=(user, token), timeout=10)
     if response.status_code == 404:
         return None
     response.raise_for_status()

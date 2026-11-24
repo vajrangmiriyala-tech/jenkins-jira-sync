@@ -4,6 +4,7 @@ from redact import log_safe, redact_config
 from idempotency import already_posted, mark_posted
 from jira_client import build_comment_body, post_comment
 from mapping import load_mapping, resolve_ticket_key
+from sync_jira import run_sync
 from ticket_key import extract_ticket_key
 from jenkins_client import normalize_build
 
@@ -122,9 +123,41 @@ def main():
     print("Log line after hiding:", log_safe(line, config))
     print()
 
-    print("Step 9: what happens next")
-    print("The full sync-jira command is not built yet.")
-    print("Next step: one command that runs all the parts together.")
+    print("Step 9: the full sync-jira command")
+    print("One call runs all the parts together, on fake data.")
+
+    class FakeResponse:
+        def __init__(self, status_code, data):
+            self.status_code = status_code
+            self._data = data
+
+        def json(self):
+            return self._data
+
+        def raise_for_status(self):
+            if self.status_code >= 400:
+                raise Exception("http error " + str(self.status_code))
+
+    class SyncHttp:
+        def get(self, url, auth=None, timeout=None):
+            return FakeResponse(200, FAKE_BUILD)
+
+        def post(self, url, auth=None, json=None, timeout=None):
+            return FakeResponse(201, {"id": "10001"})
+
+    report, seen = run_sync(
+        "my-app", 142, mapping=FAKE_MAPPING, seen=[], env=FAKE_SETTINGS, http=SyncHttp()
+    )
+    print(report_text(report))
+    print()
+
+    print("Step 10: the mock demo, one pass and one fail")
+    print("Run the same build again, and nothing new is posted.")
+    report2, seen = run_sync(
+        "my-app", 142, mapping=FAKE_MAPPING, seen=seen, env=FAKE_SETTINGS, http=SyncHttp()
+    )
+    print("Second run action:", report2["action"])
+    print("For the full demo with a failing build too, run: python3 mock_demo.py")
     print()
     print("Done. Everything above worked.")
 
